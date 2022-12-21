@@ -1,0 +1,53 @@
+.entertainment {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 64px;
+    gap: 48px;
+    h2 {
+        margin-bottom: 24px;
+    }
+    &__video {
+        width: 60%;
+        &-container {
+            position: relative;
+            padding-bottom: 56.25%;
+            width: 100%;
+            height: 0;
+            iframe,
+            object,
+            embed {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+            }
+        }
+        @media (max-width: $screen-md-min) {
+            width: 100%;
+        }
+    }
+    &__quiz {
+        width: 40%;
+        &-container {
+            background: $primary-light-gray;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 24px;
+            box-sizing: border-box;
+            justify-content: center;
+            img {
+                width: 100%;
+                height: auto;
+                max-width: 298px;
+            }
+        }
+        @media (max-width: $screen-md-min) {
+            width: 100%;
+        }
+    }
+    @media (max-width: $screen-md-min) {
+        flex-direction: column;
+    }
+}

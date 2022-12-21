@@ -1,0 +1,33 @@
+.pagination {
+    grid-column: 1 / -1;
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    svg {
+        width: 16px;
+        height: 16px;
+        fill: $primary-red;
+        &:hover {
+            fill: $primary-red-hover;
+        }
+    }
+    .unactive-pagination {
+        svg {
+            fill: $primary-gray;
+        }
+    }
+    .js-pagination {
+        cursor: pointer;
+        color: $primary-gray;
+        font-weight: 500;
+        &:hover {
+            color: $primary-red
+        }
+        &.js-active {
+            color: $primary-red
+        }
+    }
+    @media (max-width: $screen-sm-min) {
+        margin-top: 48px;
+    }
+}

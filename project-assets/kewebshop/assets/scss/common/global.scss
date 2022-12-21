@@ -1,0 +1,54 @@
+.plus-icon {
+    transition: All 0.3s ease-in-out;
+    width: 16px;
+    height: 16px;
+    display: block;
+    background-image: url("../assets/img/icons/plus_icon.svg");
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    cursor: pointer;
+    &.js-open {
+        transform: rotate(225deg);
+    }
+}
+
+.breadcrumb--delimiter {
+    font-weight: 600;
+    color: $primary-red;
+}
+
+.current--price,
+.regular--price {
+    font-weight: 600;
+    font-size: 16px;
+    @media (max-width: $screen-md-min) {
+        font-size: 14px;
+    }
+}
+.regular--price {
+    font-weight: 300;
+    color: $primary-medium-gray;
+    text-decoration: line-through;
+}
+.current--price {
+    &.discount {
+        color: $primary-red;
+    }
+}
+
+
+.discount--percentage,
+.popular--product {
+    box-shadow: $box-shadow-2;
+    font-size: 14px;
+    padding: 2px 8px;
+}
+.discount--percentage {
+    background: $primary-red;
+    color: $primary-white;
+}
+.popular--product {
+    background: $primary-white;
+    color: $primary-red;
+    font-weight: 500;
+}

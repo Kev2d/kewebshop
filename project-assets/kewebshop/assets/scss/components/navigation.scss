@@ -1,0 +1,218 @@
+@import "settings";
+.navbar {
+    &__hamburger {
+        border-bottom: 3px solid $primary-red;
+        display: none;
+        .js-hamburger {
+            transition: All 0.3s ease-in-out;
+            position: relative;
+            cursor: pointer;
+            width: 24px;
+            height: 20px;
+            span {
+                transition: All 0.3s ease-in-out;
+                position: absolute;
+                margin: auto;
+                width: 100%;
+                top: 0;
+                height: 3px;
+                transform: translateY(-50%);
+                background-color: $primary-black;
+                &:nth-child(2) {
+                    top: 50%;
+                }
+                &:nth-child(3) {
+                    top: 100%;
+                }
+            }
+            &.js-open {
+                transform: rotate(135deg);
+                span {
+                    top: 50%;
+                    &:nth-child(2) {
+                        transition-delay: 0.2s;
+                        transform: translateY(-50%) rotate(90deg);
+                    }
+                }
+            }
+            @media (max-width: $screen-sm-min) {
+                display: block;
+                margin-right: 24px;
+                margin-bottom: 12px;
+            }
+        }
+        @media (max-width: $screen-sm-min) {
+            display: flex;
+            justify-content: flex-end;
+        }
+    }
+    &__inside {
+        min-width: 100%;
+        .primary-menu {
+            background: $primary-white;
+            border-top: 3px solid $primary-red;
+            position: relative;
+            display: flex;
+            gap: 24px;
+            width: 100%;
+            padding: 0 48px;
+            .js-main-item {
+                position: relative;
+                cursor: pointer;
+                display: inline-block;
+                @media (max-width: $screen-sm-min) {
+                    position: relative;
+                    padding-left: 28px;
+                    cursor: pointer;
+                    &:after {
+                        transition: All 0.3s ease-in-out;
+                        position: absolute;
+                        content: "";
+                        width: 20px;
+                        height: 20px;
+                        left: 2px;
+                        top: 6px;
+                        background-image: url("../assets/img/icons/plus_icon.svg");
+                        background-repeat: no-repeat;
+                        background-size: 100% 100%;
+                    }
+                }
+                &.js-open:after {
+                    transform: rotate(225deg);
+                }
+            }
+            > li {
+                border-bottom: 2px solid transparent;
+                display: inline-block;
+                > a,
+                > span {
+                    display: block;
+                    padding: 12px 0;
+                    color: $primary-dark-gray;
+                    font-size: 16px;
+                    font-weight: 500;
+                    &:hover {
+                        color: $primary-black;
+                    }
+                    @media (max-width: $screen-sm-min) {
+                        padding: 6px 24px;
+                    }
+                }
+                a {
+                    text-decoration: none;
+                }
+                &:after {
+                    content: "";
+                    display: block;
+                    width: 0;
+                    height: 2px;
+                    background: $primary-black;
+                    transition: width 0.3s;
+                }
+                &:hover::after {
+                    width: 100%;
+                }
+                &.js-open {
+                    &:after {
+                        width: 100%;
+                    }
+                }
+            }
+
+            .second-level {
+                z-index: 9;
+                background: $primary-white;
+                display: none;
+                padding: 0 48px;
+                position: absolute;
+                top: 100%;
+                min-width: 100%;
+                left: 0;
+                -moz-box-shadow: 0 3px 6px -6px rgba(0, 0, 0, 0.32);
+                -webkit-box-shadow: 0 3px 6px -6px rgba(0, 0, 0, 0.32);
+                box-shadow: 0 3px 6px -6px rgba(0, 0, 0, 0.32);
+                margin-left: -48px;
+                .js-second-title {
+                    @media (max-width: $screen-sm-min) {
+                        position: relative;
+                        padding-left: 28px;
+                        cursor: pointer;
+                        &:after {
+                            transition: All 0.3s ease-in-out;
+                            position: absolute;
+                            content: "";
+                            width: 20px;
+                            height: 20px;
+                            left: 0;
+                            top: 1px;
+                            background-image: url("../assets/img/icons/plus_icon.svg");
+                            background-repeat: no-repeat;
+                            background-size: 100% 100%;
+                        }
+                    }
+                    &.js-open:after {
+                        transform: rotate(225deg);
+                    }
+                }
+                &-menu {
+                    display: grid;
+                    grid-template-columns: repeat(6, 1fr);
+                    padding: 24px 48px;
+                    gap: 48px;
+                    > li {
+                        > a {
+                            text-transform: uppercase;
+                            color: $primary-gray;
+                            font-weight: 500;
+                            font-size: 16px;
+                            &:hover {
+                                color: $primary-black;
+                            }
+                        }
+                    }
+                    .third-level {
+                        display: block;
+                        margin-top: 12px;
+                        a {
+                            color: $primary-gray;
+                            font-size: 16px;
+                            &:hover {
+                                color: $primary-black;
+                            }
+                        }
+                        &.js-menu {
+                            overflow: hidden !important;
+                            position: relative !important;
+                        }
+                        @media (max-width: $screen-sm-min) {
+                            display: none;
+                        }
+                    }
+                    @media (max-width: $screen-md-min) {
+                        grid-template-columns: repeat(4, 1fr);
+                    }
+                    @media (max-width: $screen-sm-min) {
+                        grid-template-columns: 1fr;
+                        gap: 8px;
+                    }
+                }
+                @media (max-width: $screen-sm-min) {
+                    box-shadow: none;
+                    position: relative;
+                    top: 0;
+                    padding: 0 36px;
+                }
+            }
+            @media (max-width: $screen-sm-min) {
+                display: flex;
+                flex-direction: column;
+                gap: 0px;
+                padding: 24px;
+            }
+        }
+        @media (max-width: $screen-sm-min) {
+            display: none;
+            border: 0;
+        }
+    }
+}

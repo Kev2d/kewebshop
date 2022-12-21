@@ -1,0 +1,133 @@
+.single-product__information {
+    margin-top: 96px;
+    &-tabs {
+        margin-bottom: 48px;
+        position: relative;
+        border-bottom: 1px solid $primary-red;
+        display: inline-flex;
+        &-tab {
+            display: block;
+            transition: All 0.3s ease-in-out;
+            text-decoration: none;
+            color: $primary-black;
+            font-size: 18px;
+            padding: 12px 24px;
+            cursor: pointer;
+            &.js-active,
+            &:hover {
+                color: $primary-red;
+            }
+            h4 {
+                text-transform: uppercase;
+                font-weight: 500;
+                white-space: nowrap;
+            }
+        }
+
+        .js-hover-line {
+            pointer-events: none;
+            left: 0;
+            transition: All 0.3s ease-in-out;
+            height: 3px;
+            background-color: $primary-red;
+            bottom: 0;
+            position: absolute;
+        }
+        @media (max-width: $screen-md-min) {
+            overflow-x: scroll;
+            display: flex;
+        }
+    }
+    &-content {
+        &-item {
+            &.js-hidden {
+                display: none;
+            }
+        }
+    }
+}
+
+.additional-information {
+    display: flex;
+    gap: 48px;
+    &-left {
+        width: 50%;
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+        h4 {
+            margin-bottom: 12px;
+        }
+        .product-info {
+            ul {
+                display: flex;
+                flex-direction: column;
+                gap: 4px;
+                li {
+                    strong {
+                        font-weight: 600;
+                    }
+                    font-size: 16px;
+                    @media (max-width: $screen-md-min) {
+                        font-size: 14px;
+                    }
+                }
+            }
+        }
+    }
+    &-right {
+        width: 50%;
+        img {
+            width: 100%;
+            height: auto;
+        }
+    }
+}
+
+.reviews {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    &__user-review {
+        border-bottom: 1px solid $primary-light-gray;
+        padding: 0 0 12px 0;
+        &-name {
+            font-weight: 600;
+        }
+    }
+}
+
+#review_form_wrapper {
+    margin-top: 48px;
+}
+
+.comment-form {
+    &-comment {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        textarea {
+            width: 100%;
+            max-width: 600px;
+            height: 200px;
+        }
+    }
+    &-rating {
+        display:flex;
+        svg {
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+            fill:$primary-medium-gray;
+            &:hover{
+                fill:$primary-red;
+            }
+        }
+        span {
+            display: flex;
+            input {
+                display: none;
+            }
+        }
+    }
+}

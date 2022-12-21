@@ -1,0 +1,41 @@
+/*
+  Theme Name: EmptyWP
+  Theme URI: https://keweb.ee/
+  Author: Keweb - Aspen Stream Web
+  Author URI: https://keweb.ee
+  Description: EmptyWP Theme
+  Version: 0.1
+  License: copyright Aspen Stream Web OÜ
+  Tags: EMPTYWP
+*/
+
+//common
+
+@import "common/variables";
+@import "common/breakpoints";
+@import "common/global";
+@import "common/fontsizes";
+
+//pages
+
+@import "components/settings";
+@import "components/header";
+@import "components/footer";
+@import "components/404page";
+@import "components/navigation";
+@import "components/product-cat";
+@import "components/pagination";
+@import "components/single-product";
+@import "components/single-product-tabs";
+
+//Blocks
+
+@import "components/favoriteCategories-block";
+@import "components/advertisement-block";
+@import "components/popularProducts-block";
+@import "components/entertainment-block";
+@import "components/moreProducts-block";
+
+//Fonts
+
+@import "fonts/fonts";

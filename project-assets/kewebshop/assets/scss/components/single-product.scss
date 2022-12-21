@@ -1,0 +1,146 @@
+.single-product {
+    margin-top: 96px;
+    &__inside {
+        margin-top: 48px;
+        display: flex;
+        gap: 48px;
+        &-left {
+            width: 60%;
+            display: flex;
+            gap: 24px;
+            flex-direction: column;
+            @media (max-width: $screen-sm-min) {
+                width: 100%;
+            }
+        }
+        &-right {
+            position: relative;
+            width: 40%;
+            &-content {
+                &.fixed {
+                    position: fixed;
+                    top: 0;
+                    bottom: unset;
+                }
+                &.absolute {
+                    position: absolute;
+                    top: unset;
+                    bottom: unset;
+                }
+
+                &.bottom {
+                    position: absolute;
+                    top: unset;
+                    bottom: 0;
+                }
+            }
+            h1 {
+                font-size: 32px;
+                @media (max-width: $screen-md-min) {
+                    font-size: 28px;
+                }
+                @media (max-width: $screen-sm-min) {
+                    font-size: 22px;
+                }
+            }
+            .current--price,
+            .regular--price {
+                font-size: 24px;
+                @media (max-width: $screen-md-min) {
+                    font-size: 22px;
+                }
+            }
+            .make-order {
+                display: flex;
+                gap: 12px;
+                &__button {
+                    color: $primary-white;
+                    background: $primary-red;
+                    border: 0;
+                    outline: 0;
+                    font-weight: 500;
+                    padding: 0px 48px;
+                    cursor: pointer;
+                    &:hover {
+                        background: $primary-red-hover;
+                    }
+                }
+                &__quantity {
+                    display: flex;
+                    gap: 4px;
+                    input[type="number"]::-webkit-inner-spin-button,
+                    input[type="number"]::-webkit-outer-spin-button {
+                        -webkit-appearance: none;
+                        margin: 0;
+                    }
+                    input {
+                        text-align: center;
+                        width: 64px;
+                        border: 0;
+                        background: $primary-light-gray;
+                    }
+                    span {
+                        padding: 12px 24px;
+                        cursor: pointer;
+                        background: $primary-light-gray;
+                        &:hover {
+                            background: $primary-light-gray-2;
+                        }
+                        svg {
+                            width: 12px;
+                            height: 12px;
+                        }
+                    }
+                }
+            }
+            @media (max-width: $screen-sm-min) {
+                width: 100%;
+            }
+        }
+        &-prices {
+            margin-top: 12px;
+        }
+        .make-order {
+            margin-top: 24px;
+        }
+        .single-product-content{
+            margin-top: 48px;
+        }
+        &-thumbnail {
+            img {
+                box-shadow: $box-shadow;
+                width: 100%;
+                height: auto;
+            }
+        }
+        &-gallery {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            .product-gallery-image {
+                cursor: pointer;
+                img {
+                    box-shadow: $box-shadow;
+                    width: 100%;
+                    height: auto;
+                    border: 2px solid transparent;
+                    &.js-active,
+                    &:hover {
+                        border: 2px solid $primary-red;
+                    }
+                }
+                @media (max-width: $screen-sm-min) {
+                    min-width: 30vw;
+                }
+            }
+            @media (max-width: $screen-sm-min) {
+                display: flex;
+                grid-template-columns: unset;
+                overflow-x: scroll;
+            }
+        }
+        @media (max-width: $screen-sm-min) {
+            flex-direction: column;
+        }
+    }
+}
