@@ -82,3 +82,12 @@ ul {
         background-image: url("../assets/img/icons/loader.svg");
     }
 }
+
+input,
+textarea {
+    &:focus {
+        outline: none;
+        border: 0;
+        box-shadow: 0;
+    }
+}

@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "build": "npx babel assets/js --out-file dist/keweb.min.js && npm run scss",
+    "build": "npx babel assets/js/components --out-file dist/keweb.min.js && npx babel assets/js/productCat --out-file dist/productCat.min.js && npx babel assets/js/singleProduct --out-file dist/singleProduct.min.js && npm run scss",
     "dev": "watch \"npm run build\" assets/js",
     "scss": "sass --watch assets/scss/style.scss:dist/style.min.css --style compressed --no-source-map",
     "sync": "browser-sync start --proxy \"localhost:8000\" --files \"**/*\""

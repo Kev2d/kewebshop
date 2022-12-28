@@ -2,7 +2,7 @@
 <html>
 
 <head>
-<script src="https://cdn.jsdelivr.net/npm/js-base64@3.7.3/base64.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/js-base64@3.7.3/base64.min.js"></script>
   <meta name="keywords" content="">
   <meta name="description" content="">
 
@@ -12,7 +12,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 
-<div class="shop-header">
+<div class="shop-header js-shop-header">
+
+  <?php get_search_form(); ?>
 
   <?php
 
@@ -26,7 +28,6 @@
   <?php
   endif;
   ?>
-
 </div>
 
 <nav class="navbar">

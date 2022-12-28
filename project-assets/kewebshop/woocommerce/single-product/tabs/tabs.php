@@ -14,13 +14,13 @@
 
 	<div class="single-product__information-content">
 
-		<div class="single-product__information-content-item js-hidden" id="tab_1">
+		<div class="single-product__information-content-item" id="tab_1">
 			<?php
 			wc_get_template('/single-product/tabs/additional-description.php');
 			?>
 		</div>
 
-		<div class="single-product__information-content-item" id="tab_2">
+		<div class="single-product__information-content-item js-hidden" id="tab_2">
 			<?php
 			comments_template();
 			?>

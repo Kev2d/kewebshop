@@ -9,12 +9,10 @@ $(function () {
     if ($('.js-submenu.js-open').length) {
         $('.js-submenu.js-open').show();
     }
-
     $(document).on("click", '.js-filter-label', function () {
         $('.js-filter-options').hide();
         $(this).next('.js-filter-options').fadeIn(300);
     });
-
 
     const minValue = $('.js-slider-min').val();
     const maxValue = $('.js-slider-max').val();

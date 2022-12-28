@@ -8,6 +8,9 @@ $(document).ready(function () {
 
 $('.js-thumbnails img').click(function (e) {
   e.preventDefault();
+  $('html,body').animate({
+    scrollTop: $('.js-gallery-images').offset().top - 20
+  }, 'slow');
   const currentSlider = $('.slick-current').data('imgid');
   const slideno = $(this).data('imgid');
   if (currentSlider === slideno) {
@@ -18,26 +21,23 @@ $('.js-thumbnails img').click(function (e) {
   $('.js-product-gallery').slick('slickGoTo', slideno - 1);
 });
 
-$('.js-product-gallery').on('afterChange', function(event, slick, currentSlide){
+$('.js-product-gallery').on('afterChange', function (event, slick, currentSlide) {
   const curId = $('.js-product-gallery .slick-current img').data('imgid');
   $('.js-thumbnails img').removeClass('js-active');
   $(`.js-thumbnails img[data-imgid='${curId}']`).addClass('js-active');
-  console.log(curId);
 });
 
-
-
 $(document).ready(followOnScroll);
-$(window).on('resize',followOnScroll);
+$(window).on('resize', followOnScroll);
 
 function followOnScroll() {
 
-    const windowWidth = $(window).width();
-    const parentWidth = $('.js-single-content-parent').width();
+  const windowWidth = $(window).width();
+  const parentWidth = $('.js-single-content-parent').width();
 
-    $('.js-single-content').css('width', parentWidth + 'px');
+  $('.js-single-content').css('width', parentWidth + 'px');
 
-    if (windowWidth > 768) {
+  if (windowWidth > 768) {
     $(".js-product-gallery img").each(function () {
       if ($(this).attr('width') > 800) {
         $(this)
@@ -50,26 +50,26 @@ function followOnScroll() {
     $('.js-product-gallery img').trigger('zoom.destroy');
   }
 
-    $(window).scroll(function () {
+  $(window).scroll(function () {
 
-      if (windowWidth > 768) {
+    if (windowWidth > 768) {
 
-        const parentTop = $('.js-single-content-parent').offset().top;
-        const parentBottom = parentTop + $('.js-single-content-parent').outerHeight();
-        const childHeight = $('.js-single-content').height();
-        const scrollTop = $(window).scrollTop();
+      const parentTop = $('.js-single-content-parent').offset().top;
+      const parentBottom = parentTop + $('.js-single-content-parent').outerHeight();
+      const childHeight = $('.js-single-content').height();
+      const scrollTop = $(window).scrollTop();
 
-        if (scrollTop > parentTop && parentBottom - childHeight > scrollTop) {
-          $('.js-single-content').addClass('fixed').removeClass('absolute bottom');
-        } else if (scrollTop < parentTop) {
-          $('.js-single-content').addClass('absolute').removeClass('fixed bottom');
-        } else {
-          $('.js-single-content').addClass('absolute bottom').removeClass('fixed');
-        }
+      if (scrollTop > parentTop && parentBottom - childHeight > scrollTop) {
+        $('.js-single-content').addClass('fixed').removeClass('absolute bottom');
+      } else if (scrollTop < parentTop) {
+        $('.js-single-content').addClass('absolute').removeClass('fixed bottom');
       } else {
-        $('.js-single-content').addClass('absolute').removeClass('fixed bottom absolute');
+        $('.js-single-content').addClass('absolute bottom').removeClass('fixed');
       }
-    });
+    } else {
+      $('.js-single-content').addClass('absolute').removeClass('fixed bottom absolute');
+    }
+  });
 
 }
 

@@ -139,7 +139,7 @@
 
 					<div class="single-product-content">
 
-					<?= the_content(); ?>
+						<?= the_content(); ?>
 
 					</div>
 
@@ -178,6 +178,11 @@
 		<?php
 		// Include the customized tabs template
 		wc_get_template('/single-product/tabs/tabs.php');
+		?>
+
+		<?php
+		// Include the customized tabs template
+		wc_get_template('/templates/latest-products.php');
 		?>
 
 	</div>

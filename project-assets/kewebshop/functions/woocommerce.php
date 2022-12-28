@@ -95,40 +95,24 @@ add_filter('woocommerce_product_review_comment_form_args', 'custom_review_form_a
 function custom_review_form_args($args)
 {
     $args['comment_field'] = '<p class="comment-form-comment">';
-    $args['comment_field'] .= '<label for="comment">' . esc_html__('Kirjuta tagasiside või jäta hinnang', 'kewebshop') . '&nbsp;<span class="required">*</span></label>';
-    $args['comment_field'] .= '<textarea id="comment" name="comment" cols="45" rows="8" required></textarea>';
+    $args['comment_field'] .= '<textarea placeholder="' . __('Lisa kommentaar...', 'kewebshop') . '" id="js-review-comment" name="comment" cols="45" rows="8"></textarea>';
     $args['comment_field'] .= '</p>';
     if (wc_review_ratings_enabled()) {
         $args['comment_field'] .= '<p class="comment-form-rating">';
         $args['comment_field'] .= '<span class="thumbs-up">';
-        $args['comment_field'] .= '<input type="radio" name="rating" id="thumbs-up" value="5" />';
-        $args['comment_field'] .= '<label for="thumbs-up"><svg>
+        $args['comment_field'] .= '<input type="checkbox" name="rating" id="js-review-thumbs-up" value="5" />';
+        $args['comment_field'] .= '<label for="js-review-thumbs-up"><svg>
         <use xlink:href="' . get_template_directory_uri() . '/assets/img/icons/thumbs-up-icon.svg#thumbs-up" href="' . get_template_directory_uri() . '/assets/img/icons/thumbs-up-icon.svg#thumbs-up"></use>
-        </svg>' . esc_html__('Meeldib', 'kewebshop') . '</label>';
+        </svg><span class="like-text">' . esc_html__('Meeldib', 'kewebshop') . '</span></label>';
         $args['comment_field'] .= '</span>';
         $args['comment_field'] .= '<span class="thumbs-down">';
-        $args['comment_field'] .= '<input type="radio" name="rating" id="thumbs-down" value="1" />';
-        $args['comment_field'] .= '<label for="thumbs-down"><svg>
+        $args['comment_field'] .= '<input type="checkbox" name="rating" id="js-review-thumbs-down" value="1" />';
+        $args['comment_field'] .= '<label for="js-review-thumbs-down"><svg>
         <use xlink:href="' . get_template_directory_uri() . '/assets/img/icons/thumbs-down-icon.svg#thumbs-down" href="' . get_template_directory_uri() . '/assets/img/icons/thumbs-down-icon.svg#thumbs-down"></use>
         </svg></label>';
         $args['comment_field'] .= '</span>';
         $args['comment_field'] .= '</p>';
+        $args['submit_button'] .= '<button type="submit" class="comment-form__button js-add-review">' . __('Lisa tagasiside','kewebshop') . '</button>';
     }
     return $args;
 }
-
-
-function handle_delete_request() {
-    // Check if the nonce is valid
-    if (!wp_verify_nonce($_REQUEST['_wpnonce'], 'my-nonce')) {
-      wp_send_json_error(array('message' => 'Invalid nonce'));
-    }
-  
-    // Get the comment ID from the request
-    $comment_id = $_REQUEST['comment_id'];
-  
-    // Delete the comment
-    wp_delete_comment($comment_id, true);
-  
-    wp_send_json_success();
-  }
