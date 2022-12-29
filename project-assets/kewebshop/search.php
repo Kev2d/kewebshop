@@ -6,7 +6,7 @@ get_header(); ?>
 
 <div class="content">
 
-    <div class="search-page">
+    <div class="search-page js-search-page" data-searchquery="<?= get_search_query(); ?>">
 
         <div class="search-page__sidemenu">
 
@@ -46,8 +46,6 @@ get_header(); ?>
                     <?php foreach ($uniqueCatArr as $cat_id) : ?>
                         <?php $product_category = get_term($cat_id, 'product_cat'); ?>
 
-
-
                         <?php if ($product_category->parent) :
                             $parent_category = get_term($product_category->parent, 'product_cat');
                             $children = get_term_children($parent_category->term_id, 'product_cat');
@@ -63,7 +61,7 @@ get_header(); ?>
                                         if (in_array($child, $uniqueCatArr)) :
                                             $term = get_term_by('id', $child, 'product_cat');
                                     ?>
-                                            <li><span class="js-cat"><?= $term->name; ?></span></li>
+                                            <li data-cat="<?= $term->term_id; ?>"><span class="js-cat"><?= $term->name; ?></span></li>
                                     <?php endif;
                                     endforeach; ?>
                                 </ul>
@@ -90,7 +88,7 @@ get_header(); ?>
 
         </div>
 
-        <section class="product-cat__results">
+        <section class="search-page__results">
 
             <div class="search-page__results-header js-search-header">
                 <?php include('search-filters.php'); ?>

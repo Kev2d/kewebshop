@@ -1,23 +1,31 @@
-<?php
-if (!empty($_POST['productCat'])) :
-	$object = get_term((int)$_POST['productCat']);
-	$queryObj = $object;
-	$objectId = $object->term_id;
-	$term = get_term($objectId, 'product_cat');
-	custom_woocommerce_breadcrumb($term);
+<?php $objectId = isset($_POST['productCat']) ? (int)$_POST['productCat'] : $uniqueCatArr;
+if (get_search_query()) :
+	$searchQuery = get_search_query();
 else :
-	$object = get_queried_object();
-	woocommerce_breadcrumb();
+	$searchQuery = $_POST['searchQuery'];
 endif;
 ?>
-<h3 class="js-category-title"><?= $object->name ?></h3>
+
+<h3 class="js-category-title"><?= __('Sinu otsingusõna:' . $searchQuery . ' ', 'kewebshop'); ?></h3>
 
 <div class="product-cat__products-filters">
 
 	<?php
 
+
 	$catargs = array(
-		'category' => array($object->slug),
+		'post_type' => 'product',
+		'post_status' => 'publish',
+		'ignore_sticky_posts' => 1,
+		's' => $searchQuery,
+		'tax_query' => array(
+			'relation' => 'AND',
+			array(
+				'taxonomy' => 'product_cat',
+				'field' => 'term_id',
+				'terms' => $objectId
+			)
+		),
 	);
 	$data = array();
 	$prices = array();

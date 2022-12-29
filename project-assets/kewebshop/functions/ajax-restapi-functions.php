@@ -20,6 +20,17 @@ add_action('rest_api_init', function () {
         'methods' => 'POST',
         'callback' => 'get_list_of_products'
     ));
+
+    //Search page related ajax rest api endpoints
+
+    register_rest_route('baseURL/v1/baseEndPoint', '/getsearchproducts/', array(
+        'methods' => 'POST',
+        'callback' => 'get_search_products'
+    ));
+    register_rest_route('baseURL/v1/baseEndPoint', '/getsearchfilters/', array(
+        'methods' => 'POST',
+        'callback' => 'get_search_filters'
+    ));
 });
 
 function restAPI_endpoint_moreProducts()
@@ -102,4 +113,23 @@ function get_list_of_products()
 
 
     return json_encode($products_array);
+}
+
+
+function get_search_products()
+{
+    ob_start();
+    get_template_part('search-results');
+    $products_template = ob_get_contents();
+    ob_end_clean();
+    return $products_template;
+}
+
+function get_search_filters()
+{
+    ob_start();
+    get_template_part('search-filters');
+    $products_template = ob_get_contents();
+    ob_end_clean();
+    return $products_template;
 }

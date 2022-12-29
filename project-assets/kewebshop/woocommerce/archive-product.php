@@ -57,7 +57,7 @@ get_header();
 
 		</div>
 
-		<section class="product-cat__products">
+		<section class="product-cat__products js-products">
 			<div class="product-cat__products-header js-products-header">
 				<?php include('templates/all-products-header.php'); ?>
 			</div>

@@ -148,10 +148,10 @@ endif; ?>
     $totalpages = $wp_query->max_num_pages;
     $middlepage = (int)($totalpages / 2);
 
-    $prev_page = '<a class="pagination-item pagination-prev" href="' . get_pagenum_link() . 'page/' . ($paged - 1) . '"><svg>
+    $prev_page = '<a class="pagination-item pagination-prev js-pagination" data-page="' . ($paged - 1) . '"><svg>
 <use xlink:href="' . get_template_directory_uri() . '/assets/img/icons/arrow-left-icon.svg#arrow-left" href="' . get_template_directory_uri() . '/assets/img/icons/arrow-left-icon.svg#arrow-left"></use>
 </svg></a>';
-    $next_page = '<a class="pagination-item pagination-next" href="' . get_pagenum_link() . 'page/' . ($paged + 1) . '"><svg>
+    $next_page = '<a class="pagination-item pagination-next js-pagination" data-page="' . ($paged + 1) . '"><svg>
 <use xlink:href="' . get_template_directory_uri() . '/assets/img/icons/arrow-right-icon.svg#arrow-right" href="' . get_template_directory_uri() . '/assets/img/icons/arrow-right-icon.svg#arrow-right"></use>
 </svg></a>';
 

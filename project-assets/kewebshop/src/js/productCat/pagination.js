@@ -1,6 +1,6 @@
 $(document).on("click", '.js-pagination', function (e) {
     e.preventDefault();
-    const productCat = $('.js-cat.highlight--text').data('cat');
+    const productCat = $('.js-cat.highlight--text').parents('li').data('cat');
     const pageNr = $(this).data('page');
     getProductsByCategory(pageNr, productCat);
 });

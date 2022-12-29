@@ -2,6 +2,9 @@
     margin-top: 96px;
     display: flex;
     gap: 48px;
+    &__results {
+        width: 100%;
+    }
     &__sidemenu {
         width: 20%;
         ul {
@@ -24,7 +27,7 @@
             }
         }
         &-submenu {
-           /*  display: none; */
+            /*  display: none; */
             padding-left: 12px;
         }
         @media (max-width: $screen-md-min) {
