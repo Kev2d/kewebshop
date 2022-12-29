@@ -6,47 +6,103 @@ get_header(); ?>
 
 <div class="content">
 
-<?php if (get_search_query()) :
-    $args = array(
-        'post_type'             => 'product',
-        'post_status'           => 'publish',
-        'ignore_sticky_posts'   => 1,
-        's' => get_search_query(),
-    );
-  
-else:
+    <div class="search-page">
 
-    $args = array();
+        <div class="search-page__sidemenu">
 
-endif;
+            <?php if (get_search_query()) :
+                $args = array(
+                    'post_type' => 'product',
+                    'post_status' => 'publish',
+                    'ignore_sticky_posts' => 1,
+                    's' => get_search_query(),
+                );
+            else :
+                $args = array();
+            endif;
 
-$products = new WP_Query($args);
-?>
+            $wpquery = new WP_Query($args);
+            ?>
 
-<?php if ( $products->have_posts() && get_search_query() ) : ?>
+            <?php if ($wpquery->have_posts() && get_search_query()) :
+                $catArr = array();
+            ?>
 
-<h1>Search Results</h1>
+                <ul>
 
-<ul>
+                    <?php while ($wpquery->have_posts()) : $wpquery->the_post();
+                        $productId = get_the_ID();
+                        $productCategories = wp_get_post_terms($productId, 'product_cat');
+                    ?>
 
-<?php while ( $products->have_posts()) : $products->the_post(); ?>
+                        <?php foreach ($productCategories as $productCategorie) :
+                            array_push($catArr, $productCategorie->term_id);
+                        endforeach ?>
 
-<li>
+                    <?php endwhile;
+                    $uniqueCatArr = array_unique($catArr);
+                    ?>
 
-<a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
+                    <?php foreach ($uniqueCatArr as $cat_id) : ?>
+                        <?php $product_category = get_term($cat_id, 'product_cat'); ?>
 
-</li>
 
-<?php endwhile; ?>
 
-</ul>
+                        <?php if ($product_category->parent) :
+                            $parent_category = get_term($product_category->parent, 'product_cat');
+                            $children = get_term_children($parent_category->term_id, 'product_cat');
+                        ?>
+                            <li data-cat="<?= $parent_category->term_id; ?>">
+                                <span class="js-cat"><?= $parent_category->name; ?></span>
+                                <span class="plus-icon js-open-submenu"></span>
+                            </li>
 
-<?php else : ?>
+                            <?php if (!empty($children)) : ?>
+                                <ul class="product-cat__sidemenu-submenu js-submenu">
+                                    <?php foreach ($children as $child) :
+                                        if (in_array($child, $uniqueCatArr)) :
+                                            $term = get_term_by('id', $child, 'product_cat');
+                                    ?>
+                                            <li><span class="js-cat"><?= $term->name; ?></span></li>
+                                    <?php endif;
+                                    endforeach; ?>
+                                </ul>
+                            <?php
+                            endif; ?>
 
-<p>No search results found.</p>
+                        <?php else :
+                            $children = get_term_children($product_category->term_id, 'product_cat');
+                        ?>
+                            <li data-cat="<?= $product_category->term_id; ?>">
+                                <span class="js-cat"><?= $product_category->name; ?></span>
+                                <?php if (!empty($children)) : ?>
+                                    <span class="plus-icon js-open-submenu"></span>
+                                <?php endif; ?>
+                            </li>
+                        <?php endif; ?>
 
-<?php endif; ?>
 
+                    <?php endforeach ?>
+
+                </ul>
+
+            <?php endif; ?>
+
+        </div>
+
+        <section class="product-cat__results">
+
+            <div class="search-page__results-header js-search-header">
+                <?php include('search-filters.php'); ?>
+            </div>
+
+            <div class="search-page__results-inside js-all-results">
+                <?php include('search-results.php'); ?>
+            </div>
+
+        </section>
+
+    </div>
 
 </div>
 <?php get_footer(); ?>

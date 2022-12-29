@@ -3,9 +3,9 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "build": "npx babel assets/js/components --out-file dist/keweb.min.js && npx babel assets/js/productCat --out-file dist/productCat.min.js && npx babel assets/js/singleProduct --out-file dist/singleProduct.min.js && npm run scss",
-    "dev": "watch \"npm run build\" assets/js",
-    "scss": "sass --watch assets/scss/style.scss:dist/style.min.css --style compressed --no-source-map",
+    "build": "npx babel src/js/components --out-file dist/keweb.min.js && npx babel src/js/productCat --out-file dist/productCat.min.js && npx babel src/js/singleProduct --out-file dist/singleProduct.min.js && npx babel src/js/searchPage --out-file dist/searchPage.min.js && npm run scss",
+    "dev": "watch \"npm run build\" src/js",
+    "scss": "sass --watch src/scss/style.scss:dist/style.min.css --style compressed --no-source-map",
     "sync": "browser-sync start --proxy \"localhost:8000\" --files \"**/*\""
   },
   "type": "module",

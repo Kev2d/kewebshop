@@ -1,0 +1,102 @@
+.search-page {
+    margin-top: 96px;
+    display: flex;
+    gap: 48px;
+    &__sidemenu {
+        width: 20%;
+        ul {
+            gap: 12px;
+            li {
+                display: flex;
+                align-items: center;
+                gap: 8px;
+                font-size: 16px;
+                transition: All 0.3s ease-in-out;
+                cursor: pointer;
+                &:hover {
+                    color: $primary-red;
+                }
+                .js-cat {
+                    &.highlight--text {
+                        font-weight: 500;
+                    }
+                }
+            }
+        }
+        &-submenu {
+           /*  display: none; */
+            padding-left: 12px;
+        }
+        @media (max-width: $screen-md-min) {
+            width: 100%;
+        }
+    }
+    &__inside {
+        margin-top: 32px;
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        gap: 24px;
+        &-item {
+            &-thumbnail {
+                box-shadow: $box-shadow-2;
+                padding-top: 75%;
+                position: relative;
+                overflow: hidden;
+                &.has-thumbnail {
+                    &:hover {
+                        img {
+                            &:nth-child(1) {
+                                display: none;
+                            }
+                            &:nth-child(2) {
+                                display: block;
+                            }
+                        }
+                    }
+                }
+                img {
+                    position: absolute;
+                    top: 50%;
+                    right: 50%;
+                    -webkit-transform: translate(50%, -50%);
+                    -ms-transform: translate(50%, -50%);
+                    transform: translate(50%, -50%);
+                    width: 100%;
+                    height: auto;
+                    -o-object-fit: cover;
+                    object-fit: cover;
+                    -o-object-position: center;
+                    object-position: center;
+                    &:nth-child(2) {
+                        display: none;
+                    }
+                }
+                .discount--percentage,
+                .popular--product {
+                    position: absolute;
+                    bottom: 8px;
+                    z-index: 1;
+                }
+                .discount--percentage {
+                    right: 0;
+                }
+                .popular--product {
+                    left: 0;
+                }
+            }
+            h5 {
+                margin-top: 8px;
+                font-weight: 400;
+            }
+        }
+        &.js-hidden {
+            display: none;
+        }
+        @media (max-width: $screen-md-min) {
+            grid-template-columns: repeat(3, 1fr);
+        }
+        @media (max-width: $screen-md-min) {
+            grid-template-columns: 1fr;
+        }
+    }
+}
