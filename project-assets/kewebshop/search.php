@@ -6,7 +6,7 @@ get_header(); ?>
 
 <div class="content">
 
-    <div class="search-page js-search-page" data-searchquery="<?= get_search_query(); ?>">
+    <div class="search-page js-search-page" <?= get_search_query() ? 'data-searchquery="' . get_search_query() . '"' : '' ?>>
 
         <div class="search-page__sidemenu">
 
@@ -18,13 +18,17 @@ get_header(); ?>
                     's' => get_search_query(),
                 );
             else :
-                $args = array();
+                $args = array(
+                    'post_type' => 'product',
+                    'post_status' => 'publish',
+                    'ignore_sticky_posts' => 1,
+                );
             endif;
 
             $wpquery = new WP_Query($args);
             ?>
 
-            <?php if ($wpquery->have_posts() && get_search_query()) :
+            <?php if ($wpquery->have_posts()) :
                 $catArr = array();
             ?>
 

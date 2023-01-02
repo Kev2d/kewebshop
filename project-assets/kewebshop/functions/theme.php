@@ -22,7 +22,7 @@ function keweb_script_enqueue()
     'restURL' => rest_url(),
     'restNonce' => wp_create_nonce('wp_rest')
   ));
-  wp_localize_script('js', 'js_strings', array('showMoreProducts' => __('Näita rohkem tooteid', 'kewebshop'), 'commentDeleted' => __('Tagasiside edukalt eemaldatud', 'kewebshop')));
+  wp_localize_script('js', 'js_strings', array('showMoreProducts' => __('Näita rohkem tooteid', 'kewebshop'), 'commentDeleted' => __('Tagasiside edukalt eemaldatud', 'kewebshop'), 'showAllResults' => __('Näita kõiki otsingutulemusi', 'kewebshop')));
   wp_localize_script('js', 'templateUrl', array('url' => get_template_directory_uri()));
 
 

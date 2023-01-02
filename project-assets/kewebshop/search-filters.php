@@ -6,8 +6,11 @@ else :
 endif;
 ?>
 
+<?php if(!empty($searchQuery)) : ?>
 <h3 class="js-category-title"><?= __('Sinu otsingusõna:' . $searchQuery . ' ', 'kewebshop'); ?></h3>
-
+<?php else : ?>
+	<h3 class="js-category-title"><?= __('Otsingutermin puudub', 'kewebshop'); ?></h3>
+<?php endif; ?>
 <div class="product-cat__products-filters">
 
 	<?php

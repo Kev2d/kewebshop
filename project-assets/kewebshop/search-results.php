@@ -1,5 +1,12 @@
 <?php
 $objectId = isset($_POST['productCat']) ? $_POST['productCat'] : $uniqueCatArr;
+if (empty($objectId)) {
+    $term_ids = get_terms('product_cat', array(
+        'fields' => 'ids',
+        'hide_empty' => false,
+    ));
+    $objectId = $term_ids;
+}
 
 if (isset($_POST['minPrice']) && isset($_POST['maxPrice'])) :
     $minPrice = (int)$_POST['minPrice'];
@@ -62,7 +69,6 @@ else :
     $paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
 endif;
 
-if (isset($searchQuery)) :
     $args = array(
         'post_type'             => 'product',
         'post_status'           => 'publish',
@@ -84,14 +90,10 @@ if (isset($searchQuery)) :
         'meta_query' => array('relation' => 'AND', $priceMetaQuery, $popularMetaQuery, $discountMetaQuery)
     );
 
-else :
-    $args = array();
-endif;
-
 $products = new WP_Query($args);
 ?>
 
-<?php if ($products->have_posts() && $searchQuery) : ?>
+<?php if ($products->have_posts()) : ?>
 
     <div class="search-page__inside">
 

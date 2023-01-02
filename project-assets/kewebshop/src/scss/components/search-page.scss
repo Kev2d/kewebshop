@@ -27,7 +27,7 @@
             }
         }
         &-submenu {
-            /*  display: none; */
+             display: none;
             padding-left: 12px;
         }
         @media (max-width: $screen-md-min) {
@@ -101,5 +101,8 @@
         @media (max-width: $screen-md-min) {
             grid-template-columns: 1fr;
         }
+    }
+    @media (max-width: $screen-sm-min) {
+        flex-direction: column-reverse;
     }
 }
